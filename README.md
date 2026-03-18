@@ -93,16 +93,27 @@ feira.solucao
 
 ## ▶️ Como executar o projeto
 
-### 1. Compilar
+> ⚠️ Os comandos abaixo são para **PowerShell** (Windows).
+> Na minha máquina funcionou !
 
-```bash
-javac -d .. (Get-ChildItem -Recurse -Filter *.java | Select-Object -ExpandProperty FullName)
+### 1. Acesse a pasta correta
+```powershell
+cd atividade-solid-feira-livre-java-main
 ```
 
-### 2. Executar
+### 2. Crie a pasta de saída
+```powershell
+mkdir out -Force
+```
 
-```bash
-java feira.solucao.SolucaoMain
+### 3. Compile
+```powershell
+javac -d out -sourcepath src (Get-ChildItem -Path src\feira\solucao -Recurse -Filter *.java | Select-Object -ExpandProperty FullName)
+```
+
+### 4. Execute
+```powershell
+java -cp out feira.solucao.SolucaoMain
 ```
 
 ---
@@ -122,10 +133,11 @@ java feira.solucao.SolucaoMain
 ## 🧠 Sobre os commits
 
 Foram utilizados commits para demonstrar a evolução do projeto:
+(Infelizmente não consegui dividir o antes e o depois, mas dentro do próprio código está divido pela pasta "solucao" e "problemasolid")
 
-- `versao-original` → código inicial
 - `refatoracao-solid` → aplicação dos princípios SOLID
 - `merge do repositorio remoto` → integração com repositório remoto
+
 
 ---
 
