@@ -1,52 +1,134 @@
-# Atividade Prática SOLID - Feira Livre (Projeto Isolado)
+# 📘 Atividade Prática SOLID - Feira Livre
 
-Este projeto é separado de `feira-livre-java` para evitar confusão em sala.
+## 👥 Integrantes
 
-## Objetivo didático
+- Tiago Albuquerque
+- Lucas Azevedo
 
-Refatorar um sistema com problemas de design, aplicando SOLID por etapas:
+---
 
-1. SRP
-2. OCP
-3. ISP
-4. DIP
-5. LSP
+## 🎯 Objetivo
 
-## Estrutura do projeto
+Refatorar um sistema com problemas de design aplicando os princípios **SOLID**, melhorando:
 
-```text
-atividade-solid-feira-livre-java/
-  src/feira/problemasolid/   (código com problemas)
-  src/feira/solucao/         (código que os alunos vão criar)
-  ATIVIDADE.md               (roteiro principal)
+- Organização do código
+- Separação de responsabilidades
+- Redução de acoplamento
+- Facilidade de manutenção e evolução
+
+---
+
+## 🔧 Principais melhorias realizadas
+
+### ✅ 1. Aplicação do SRP (Single Responsibility Principle)
+
+- Separação clara entre:
+  - Regras de desconto (`desconto`)
+  - Processamento de pagamento (`pagamento`)
+  - Impressão de cupom (`cupom`)
+  - Notificação (`notificacao`)
+  - Relatórios (`relatorio`)
+- Cada classe agora possui **uma única responsabilidade**
+
+---
+
+### ✅ 2. Aplicação do OCP (Open/Closed Principle)
+
+- Sistema aberto para extensão:
+  - Novas promoções podem ser adicionadas sem alterar código existente
+  - Novos métodos de pagamento podem ser incluídos facilmente
+
+Exemplo:
+
+- `MotorDesconto` trabalha com lista de regras (`RegraPromo`)
+
+---
+
+### ✅ 3. Aplicação do LSP (Liskov Substitution Principle)
+
+- Implementações de:
+  - `ImpressoraCupom`
+  - `GatewayPagamento`
+  - `CalculadoraPrazoEntrega`
+- Podem ser substituídas sem quebrar o sistema
+
+---
+
+### ✅ 4. Aplicação do ISP (Interface Segregation Principle)
+
+- Interfaces específicas:
+  - `ImpressoraCupom`
+  - `ExportadorRelatorioPedido`
+  - `Notificador`
+- Evita classes dependerem de métodos que não utilizam
+
+---
+
+### ✅ 5. Aplicação do DIP (Dependency Inversion Principle)
+
+- `CheckOutService` depende de abstrações:
+  - `GatewayPagamento`
+  - `ImpressoraCupom`
+  - `Notificador`
+- Facilita testes e extensibilidade
+
+---
+
+## 🧱 Estrutura do projeto
+
+```
+feira.solucao
+├── cupom
+├── desconto
+├── domain
+├── entrega
+├── notificacao
+├── pagamento
+├── relatorio
+├── repository
+└── service
 ```
 
-## Roteiro oficial
+---
 
-Siga o arquivo `ATIVIDADE.md`.
-Ele está organizado por princípio, com classes existentes, classes a criar, execução e validação por etapa.
+## ▶️ Como executar o projeto
 
-## Execução do código original (antes da refatoração)
+### 1. Compilar
 
-No PowerShell, dentro da pasta do projeto:
-
-```powershell
-javac -d out (Get-ChildItem -Path src -Recurse -Filter *.java | ForEach-Object { $_.FullName })
-java -cp out feira.problemasolid.AtividadeMain
+```bash
+javac -d .. (Get-ChildItem -Recurse -Filter *.java | Select-Object -ExpandProperty FullName)
 ```
 
-## Execução esperada após a refatoração
+### 2. Executar
 
-Depois de concluir as etapas do roteiro:
-
-```powershell
-javac -d out (Get-ChildItem -Path src -Recurse -Filter *.java | ForEach-Object { $_.FullName })
-java -cp out feira.solucao.SolucaoMain
+```bash
+java feira.solucao.SolucaoMain
 ```
 
-## Sugestão de condução em sala
+---
 
-1. Rodar o sistema original e discutir sintomas do design.
-2. Resolver uma etapa por vez (SRP -> OCP -> ISP -> DIP -> LSP).
-3. Compilar e executar ao final de cada etapa.
-4. Validar no final com o checklist do `ATIVIDADE.md`.
+## 📊 Resultado esperado
+
+- Processamento de pedido
+- Aplicação de desconto
+- Pagamento
+- Impressão de cupom
+- Notificação via WhatsApp
+- Geração de relatório CSV
+- Cálculo de prazo de entrega
+
+---
+
+## 🧠 Sobre os commits
+
+Foram utilizados commits para demonstrar a evolução do projeto:
+
+- `versao-original` → código inicial
+- `refatoracao-solid` → aplicação dos princípios SOLID
+- `merge do repositorio remoto` → integração com repositório remoto
+
+---
+
+## 🔗 Repositório
+
+[https://github.com/TiagoAlbuquerque19/Atividade-Solid-Feira-Livre-Java](https://github.com/TiagoAlbuquerque19/Atividade-Solid-Feira-Livre-Java)
